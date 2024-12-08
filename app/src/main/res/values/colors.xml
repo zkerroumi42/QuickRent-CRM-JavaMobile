@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="classic">#8854C2</color>
+    <color name="classic1">#85D8DE</color>
+    <color name="bg_categ">#787878</color>
+    <color name="white1">#F2F2F2</color>
+    <color name="white2">#EDEDED</color>
+    <color name="hover_nav">#E3DCE3</color>
+    <color name="click_navlink">#5C1F58</color>
+    <color name="light_gray">#F5F5F5</color>
+    <color name="gray">#BDBDBD</color>
+</resources>
