@@ -1,6 +1,7 @@
 package com.example.rentalapp;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,5 +21,7 @@ public class DashboardActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        String userlogin = getIntent().getStringExtra("userlogin");
+        Toast.makeText( getApplicationContext(),"User :"+userlogin+"Authentifier avec success!", Toast.LENGTH_SHORT).show();
     }
 }

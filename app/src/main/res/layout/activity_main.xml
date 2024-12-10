@@ -98,7 +98,7 @@
             android:layout_weight="1"
             android:layout_marginStart="8dp"
             android:backgroundTint="@color/classic"
-            android:text="Sign Up"
+            android:text="SignUp"
             android:textColor="@color/white"
             android:textStyle="bold" />
     </LinearLayout>

@@ -16,7 +16,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/tv_properties_title"
+            android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -26,7 +26,7 @@
             android:textStyle="bold" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btn_add"
             android:layout_width="48dp"
             android:layout_height="40dp"
             android:layout_alignParentEnd="true"
@@ -38,8 +38,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/bottom_nav_view"
-        app:layout_constraintTop_toBottomOf="@id/tv_properties_title"
+        app:layout_constraintBottom_toTopOf="@id/bnavv"
+        app:layout_constraintTop_toBottomOf="@id/tv_title"
         tools:ignore="NotSibling">
 
         <LinearLayout
@@ -88,16 +88,16 @@
                             android:text="Description for property"
                             android:textColor="@color/classic1"
                             android:textSize="14sp" />
-
                         <Button
-                            android:id="@+id/eedit_property"
+                            android:id="@+id/btn_more"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:layout_centerVertical="true"
                             android:layout_marginEnd="8dp"
-                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:background="@color/click_navlink"
                             android:contentDescription="Edit Property"
-                            android:src="@drawable/edit" />
+                            android:src="@drawable/morev"
+                            app:tint="@color/white" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -106,11 +106,11 @@
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentBottom="true"
                         android:layout_marginTop="8dp"
-                        android:layout_toEndOf="@id/tv_property_description"
+                        android:layout_toEndOf="@id/tv_description"
                         android:orientation="horizontal">
 
                         <ImageButton
-                            android:id="@+id/edit_property"
+                            android:id="@+id/btn"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:layout_centerVertical="true"
@@ -136,7 +136,7 @@
     </ScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_nav_view"
+        android:id="@+id/bnavv"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginBottom="-4dp"

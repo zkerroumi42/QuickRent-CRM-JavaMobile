@@ -93,7 +93,7 @@
                     android:layout_height="24dp"
                     android:src="@drawable/nitification"
                     android:contentDescription="Notifications Icon"
-                    android:tint="@color/classic" />
+                    app:tint="@color/classic" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -123,9 +123,9 @@
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_dark_mode"
+                    android:src="@drawable/lang"
                     android:contentDescription="Dark Mode Icon"
-                    android:tint="@color/classic" />
+                    app:tint="@color/classic" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -155,9 +155,9 @@
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_language"
+                    android:src="@drawable/lang"
                     android:contentDescription="Language Icon"
-                    android:tint="@color/classic" />
+                    app:tint="@color/classic" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -171,9 +171,9 @@
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_arrow_forward"
+                    android:src="@drawable/lang"
                     android:contentDescription="Navigate"
-                    android:tint="@color/gray" />
+                    app:tint="@color/gray" />
             </LinearLayout>
 
             <!-- About -->
@@ -188,9 +188,9 @@
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_info"
+                    android:src="@drawable/nitification"
                     android:contentDescription="About Icon"
-                    android:tint="@color/classic" />
+                    app:tint="@color/classic" />
 
                 <TextView
                     android:layout_width="0dp"
@@ -204,9 +204,9 @@
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_arrow_forward"
+                    android:src="@drawable/lang"
                     android:contentDescription="Navigate"
-                    android:tint="@color/gray" />
+                    app:tint="@color/gray" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
