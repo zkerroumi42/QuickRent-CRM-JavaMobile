@@ -68,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 else {
                     Intent it = new Intent(LoginActivity.this,
-                            com.example.rentalapp.DashboardActivity.class) ;
+                            com.example.rentalapp.DashboardWorkSpaceActivity.class) ;
                     it.putExtra("userlogin",email);
                     startActivity(it);
                 }

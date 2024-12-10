@@ -14,13 +14,13 @@ import androidx.core.view.WindowInsetsCompat;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
-public class DashboardActivity extends AppCompatActivity {
+public class DashboardWorkSpaceActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_dashboard);
+        setContentView(R.layout.activity_dashboard_work_space);
 
         // Adjust padding for system bars
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -35,12 +35,6 @@ public class DashboardActivity extends AppCompatActivity {
 
         // Initialize BottomNavigationView
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_view);
-
-        // Set default fragment
-        if (savedInstanceState == null) {
-            loadFragment(new DashboardFragment());
-        }
-
         // Set listener for menu item selection
         bottomNavigationView.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();

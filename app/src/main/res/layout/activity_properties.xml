@@ -38,7 +38,6 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@id/bnavv"
         app:layout_constraintTop_toBottomOf="@id/tv_title"
         tools:ignore="NotSibling">
 
@@ -134,16 +133,4 @@
             </androidx.cardview.widget.CardView>
         </LinearLayout>
     </ScrollView>
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bnavv"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginBottom="-4dp"
-        android:background="@color/white"
-        app:labelVisibilityMode="labeled"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/nav_menu" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
