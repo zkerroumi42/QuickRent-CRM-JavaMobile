@@ -7,130 +7,85 @@
     android:layout_height="match_parent"
     android:background="@color/white1"
     tools:context=".PropertiesActivity">
-
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/ll"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@color/classic"
-        android:padding="16dp"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:id="@+id/tv_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="Properties"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/btn_add"
-            android:layout_width="48dp"
-            android:layout_height="40dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            app:icon="@drawable/ajouter"
-            app:iconTint="@color/black" />
-    </RelativeLayout>
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/tv_title"
-        tools:ignore="NotSibling">
-
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/classic"
+            android:padding="16dp"
+            app:layout_constraintTop_toTopOf="parent">
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Properties"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_centerVertical="true" />
+            <ImageButton
+                android:id="@+id/btn_addp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/addp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:contentDescription="@string/ajouter_prop"
+                android:background="@null"
+                android:elevation="0dp" />
+        </RelativeLayout>
         <LinearLayout
+            android:id="@+id/filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@color/white"
+            android:padding="8dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            android:elevation="4dp">
+            <ImageButton
+                android:id="@+id/btn_search"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/search"
+                android:contentDescription="Search Icon"
+                android:layout_gravity="center_vertical"
+                android:padding="8dp"
+                android:background="@null"
+                />
+            <EditText
+                android:id="@+id/edt_search"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:hint="Search..."
+                android:padding="16dp"
+                android:background="@drawable/search_background"
+                android:inputType="text"
+                android:imeOptions="actionSearch" />
+        </LinearLayout>
+    </LinearLayout>
+    <ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintTop_toBottomOf="@id/ll"
+    tools:ignore="NotSibling">
+        <LinearLayout
+            android:id="@+id/ll_properties"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="16dp">
-
-            <androidx.cardview.widget.CardView
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/list_cards_properties"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_centerVertical="true"
-                android:layout_marginBottom="16dp"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="4dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:padding="16dp">
-
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:layout_marginEnd="16dp"
-                        android:contentDescription="Property Icon"
-                        android:src="@drawable/home" />
-
-                    <LinearLayout
-                        android:layout_width="200dp"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Property Name"
-                            android:textSize="16sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Description for property"
-                            android:textColor="@color/classic1"
-                            android:textSize="14sp" />
-                        <Button
-                            android:id="@+id/btn_more"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_centerVertical="true"
-                            android:layout_marginEnd="8dp"
-                            android:background="@color/click_navlink"
-                            android:contentDescription="Edit Property"
-                            android:src="@drawable/morev"
-                            app:tint="@color/white" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentBottom="true"
-                        android:layout_marginTop="8dp"
-                        android:layout_toEndOf="@id/tv_description"
-                        android:orientation="horizontal">
-
-                        <ImageButton
-                            android:id="@+id/btn"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_centerVertical="true"
-                            android:layout_marginEnd="8dp"
-                            android:background="?attr/selectableItemBackgroundBorderless"
-                            android:contentDescription="Edit Property"
-                            android:src="@drawable/edit" />
-
-                        <ImageButton
-                            android:id="@+id/archive_property"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_centerVertical="true"
-                            android:layout_marginEnd="8dp"
-                            android:background="?attr/selectableItemBackgroundBorderless"
-                            android:contentDescription="Archive Property"
-                            android:src="@drawable/back" />
-                    </LinearLayout>
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+                android:layout_marginBottom="8dp" />
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

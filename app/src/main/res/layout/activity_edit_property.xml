@@ -3,11 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".EditPropertyActivity">
+    tools:context=".AddPropertyActivity">
+
     <RelativeLayout
+        android:id="@+id/rl"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="@color/classic"
@@ -15,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/tv_edit_property_title"
+            android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -26,8 +29,8 @@
 
         <ImageButton
             android:id="@+id/btn_back"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_alignParentStart="true"
             android:layout_marginStart="350dp"
             android:background="?attr/selectableItemBackgroundBorderless"
@@ -38,8 +41,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/tv_edit_property_title"
-        app:layout_constraintBottom_toTopOf="@id/btn_save_property"
+        app:layout_constraintTop_toBottomOf="@id/rl"
+        app:layout_constraintBottom_toTopOf="@id/btn_save"
         tools:ignore="NotSibling">
 
         <LinearLayout
@@ -56,7 +59,7 @@
                 android:layout_marginBottom="8dp" />
 
             <EditText
-                android:id="@+id/et_property_name"
+                android:id="@+id/edt_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter property name"
@@ -75,7 +78,7 @@
                 android:layout_marginBottom="8dp" />
 
             <EditText
-                android:id="@+id/et_property_description"
+                android:id="@+id/edt_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter property description"
@@ -85,6 +88,25 @@
                 android:textColorHint="@color/gray"
                 android:inputType="textMultiLine"
                 android:minLines="3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Type of Property"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp" />
+
+            <Spinner
+                android:id="@+id/spinner_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_border"
+                android:padding="12dp"
+                android:spinnerMode="dropdown"
+                android:entries="@array/property_types" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -93,8 +115,9 @@
                 android:textSize="16sp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="8dp" />
+
             <EditText
-                android:id="@+id/et_property_price"
+                android:id="@+id/edt_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter property price"
@@ -106,24 +129,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Type of Property"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="8dp" />
-
-            <Spinner
-                android:id="@+id/spinner_property_type"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/rounded_border"
-                android:padding="12dp"
-                android:spinnerMode="dropdown"
-                android:entries="@array/property_types" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Additional Features"
+                android:text="Bonus"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:layout_marginTop="16dp"
@@ -135,7 +141,7 @@
                 android:orientation="horizontal">
 
                 <CheckBox
-                    android:id="@+id/cb_furnished"
+                    android:id="@+id/box_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Furnished"
@@ -143,7 +149,7 @@
                     android:layout_marginEnd="16dp" />
 
                 <CheckBox
-                    android:id="@+id/cb_parking"
+                    android:id="@+id/box_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Parking Included"
@@ -151,13 +157,14 @@
                     android:layout_marginEnd="16dp" />
 
                 <CheckBox
-                    android:id="@+id/cb_pet_friendly"
+                    android:id="@+id/box_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Pet Friendly"
                     android:textColor="@color/black" />
 
             </LinearLayout>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -168,22 +175,37 @@
                 android:layout_marginBottom="8dp" />
 
             <Button
-                android:id="@+id/btn_upload_image"
+                android:id="@+id/btn_upload"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Upload Image"
                 android:backgroundTint="@color/classic"
                 android:textColor="@color/white" />
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="80dp"
+                android:layout_height="60dp"
+                android:layout_marginTop="16dp"
+                android:layout_gravity="center"
+                android:contentDescription="selected_image"
+                android:scaleType="centerCrop"
+                android:background="#E0E0E0"
+                tools:ignore="MissingConstraints" />
+            <Button
+                android:id="@+id/btn_save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:backgroundTint="@color/classic"
+                android:text="Save Property"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent" />
         </LinearLayout>
     </ScrollView>
-    <Button
-        android:id="@+id/btn_save_property"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:backgroundTint="@color/classic"
-        android:text="Save Changes"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent" />
+
+
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

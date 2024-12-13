@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
@@ -34,11 +35,11 @@
             android:layout_marginStart="348dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/backk"
-            android:src="@drawable/morev"
+            android:src="@drawable/lefts"
             app:tint="@color/white" />
     </RelativeLayout>
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_archived_properties"
+        android:id="@+id/archived_rec"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"

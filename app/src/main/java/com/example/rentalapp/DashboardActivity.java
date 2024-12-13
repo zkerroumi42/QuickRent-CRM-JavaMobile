@@ -1,6 +1,11 @@
 package com.example.rentalapp;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -15,59 +20,49 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
 public class DashboardActivity extends AppCompatActivity {
+    ImageButton btn_profile;
+    ImageButton btn_search;
+    ImageButton btn_report;
 
+
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_dashboard);
-
         // Adjust padding for system bars
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        btn_profile = findViewById(R.id.btn_profile);
+        btn_search = findViewById(R.id.btn_search);
+        btn_report = findViewById(R.id.btn_report);
 
-        // Get user login data
-        String userLogin = getIntent().getStringExtra("userlogin");
-        Toast.makeText(getApplicationContext(), "User: " + userLogin + " authenticated successfully!", Toast.LENGTH_SHORT).show();
+        btn_profile.setOnClickListener(new View.OnClickListener() {
 
-        // Initialize BottomNavigationView
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_view);
-
-        // Set default fragment
-        if (savedInstanceState == null) {
-            loadFragment(new DashboardFragment());
-        }
-
-        // Set listener for menu item selection
-        bottomNavigationView.setOnItemSelectedListener(item -> {
-            int itemId = item.getItemId();
-            Fragment selectedFragment = null;
-            if (itemId == R.id.nav_dashboard) {
-                selectedFragment = new DashboardFragment();
-            } else if (itemId == R.id.nav_settings) {
-                selectedFragment = new SettingsFragment();
-            } else if (itemId == R.id.nav_properties) {
-                selectedFragment = new PropertiesFragment();
-            } else if (itemId == R.id.nav_payments) {
-                selectedFragment = new PaymentsFragment();
-            }            if (selectedFragment != null) {
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, selectedFragment)
-                        .commit();
+            public void onClick(View view) {
+                Intent it = new Intent(DashboardActivity.this,
+                        com.example.rentalapp.SettingsActivity.class);
+                startActivity(it);
             }
-
-            return true;
         });
-    }
 
-    // Helper method to load fragments
-    private void loadFragment(Fragment fragment) {
-        getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.fragment_container, fragment)
-                .commit();
+        btn_search.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View view) {
+            }
+        });
+        btn_report.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View view) {
+
+                
+            }
+        });
+
+
     }
 }

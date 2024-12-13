@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
         });
         btn_login = findViewById(R.id.btn_login);
         btn_login.setOnClickListener(new View.OnClickListener() {
-
             public void onClick(View view) {
                     Intent it = new Intent(MainActivity.this,
                             com.example.rentalapp.LoginActivity.class) ;

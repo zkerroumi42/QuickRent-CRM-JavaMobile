@@ -84,7 +84,18 @@
             android:inputType="textPassword"
             android:background="@android:drawable/edit_text"
             android:padding="12dp"
-            android:layout_marginBottom="24dp" />
+            android:layout_marginBottom="20dp" />
+        <TextView
+            android:id="@+id/tv_vide"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:text="*Veuillez saisir les champs email and password !"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="#F00"
+            android:layout_marginTop="10dp" />
 
         <Button
             android:id="@+id/btn_signup"
@@ -93,7 +104,8 @@
             android:text="S'inscrire"
             android:backgroundTint="#6200EE"
             android:textColor="#FFFFFF"
-            android:layout_marginBottom="24dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
             android:padding="12dp" />
 
         <TextView

@@ -1,11 +1,17 @@
 <resources>
     <string name="app_name">Rental App</string>
     <string name="backk">Back</string>
+    <string name="ajouter_prop">Ajouter prop</string>
     <string-array name="property_types">
         <item>Apartment</item>
         <item>House</item>
         <item>Condo</item>
         <item>Commercial</item>
         <item>Land</item>
+    </string-array>
+    <string-array name="lang">
+        <item>Arabic</item>
+        <item>French</item>
+        <item>English</item>>
     </string-array>
 </resources>

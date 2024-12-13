@@ -62,6 +62,9 @@ public class LoginActivity extends AppCompatActivity {
                 } else if (email.isEmpty()) {
                     tv_vide.setText("Veuillez remplir email.");
                     tv_vide.setVisibility(View.VISIBLE);
+                } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+                    tv_vide.setText("Veuillez entrer une adresse email valide.");
+                    tv_vide.setVisibility(View.VISIBLE);
                 } else if (pwd.isEmpty()) {
                     tv_vide.setText("Veuillez remplir mot de passe.");
                     tv_vide.setVisibility(View.VISIBLE);
@@ -70,8 +73,23 @@ public class LoginActivity extends AppCompatActivity {
                     Intent it = new Intent(LoginActivity.this,
                             com.example.rentalapp.DashboardWorkSpaceActivity.class) ;
                     it.putExtra("userlogin",email);
+                    it.putExtra("modepass",pwd);
                     startActivity(it);
                 }
+            }
+
+        });
+        btn_google.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View view) {
+            //perspectives
+            }
+
+        });
+        btn_facebook.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View view) {
+                //perspectives
             }
 
         });
