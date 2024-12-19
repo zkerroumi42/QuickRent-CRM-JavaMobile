@@ -125,10 +125,15 @@ public class CrmDB {
 
     public int supprimerElement(String table, String whereClause, String[] whereArgs) {
         SQLiteDatabase db = OuvrirBD();
-        int rowsDeleted = db.delete(table, whereClause, whereArgs);
-        FermerBD();
-        return rowsDeleted;
+        return  db.delete(table, whereClause, whereArgs);
     }
+    public int mettreAJourElement(String table, ContentValues contentValues, String whereClause, String[] whereArgs) {
+        SQLiteDatabase db = OuvrirBD();
+        int rowsUpdated = db.update(table, contentValues, whereClause, whereArgs);
+        FermerBD();
+        return rowsUpdated;
+    }
+
 
     public Cursor getElements(String table, String[] columns, String selection, String[] selectionArgs, String orderBy) {
         SQLiteDatabase db = OuvrirBD();

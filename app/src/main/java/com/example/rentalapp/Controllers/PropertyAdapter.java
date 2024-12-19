@@ -24,18 +24,21 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.Proper
     private OnPropertyActionListener onEditListener;
     private OnPropertyActionListener onArchiveListener;
     private OnPropertyActionListener onMoreListener;
+    private OnPropertyActionListener onDeleteListener;
     public interface OnPropertyActionListener {
         void onAction(int position);
     }
 
     public PropertyAdapter(List<Property> propertyList,
                            OnPropertyActionListener onEditListener,
-                           OnPropertyActionListener onArchiveListener,
-                           OnPropertyActionListener onMoreListener) {
+                           OnPropertyActionListener onArchiveListener
+                           ,OnPropertyActionListener onMoreListener,OnPropertyActionListener onDeleteListener) {
         this.propertyList = propertyList;
         this.onEditListener = onEditListener;
         this.onArchiveListener = onArchiveListener;
         this.onMoreListener = onMoreListener;
+        this.onDeleteListener = onDeleteListener;
+
     }
 
     public void updateList(List<Property> newList) {
@@ -59,18 +62,16 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.Proper
         holder.btnEdit.setOnClickListener(v -> onEditListener.onAction(position));
         holder.btnArchive.setOnClickListener(v -> onArchiveListener.onAction(position));
         holder.btnMore.setOnClickListener(v -> onMoreListener.onAction(position));
-
-
+        holder.btnDelete.setOnClickListener(v -> onDeleteListener.onAction(position));
     }
 
     @Override
     public int getItemCount() {
         return propertyList.size();
     }
-
     static class PropertyViewHolder extends RecyclerView.ViewHolder {
         TextView propertyName, propertyDescription;
-        ImageButton btnEdit, btnArchive, btnMore;
+        ImageButton btnEdit, btnArchive, btnMore,btnDelete;
 
         public PropertyViewHolder(@NonNull View view) {
             super(view);
@@ -79,6 +80,8 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.Proper
             btnEdit = view.findViewById(R.id.btn_edit);
             btnArchive = view.findViewById(R.id.btn_archive);
             btnMore = view.findViewById(R.id.btn_more);
+            btnDelete = view.findViewById(R.id.btn_delete);
+
         }
     }
 }

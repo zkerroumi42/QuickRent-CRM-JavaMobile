@@ -21,15 +21,9 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
     Button btn_login;
     Button btn_signup;
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        SharedPreferences SP = newBase.getSharedPreferences("RentalAppPreferences", Context.MODE_PRIVATE);
-        String langCode = SP.getString("app_lang", "en");
-        super.attachBaseContext(LocaleHelper.updateLocale(newBase, langCode));
-    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        LocaleHelper.applyLocale(this);
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);

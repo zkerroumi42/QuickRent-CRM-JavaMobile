@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white1"
+    tools:context=".ArchivedActivity">
+    <LinearLayout
+        android:id="@+id/ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/classic"
+            android:padding="16dp"
+            app:layout_constraintTop_toTopOf="parent">
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Archived"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_centerVertical="true" />
+            <FrameLayout
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true">
+
+                <ImageButton
+                    android:id="@+id/btn_back"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:src="@drawable/lefts"
+                    app:tint="@color/white"
+                    android:contentDescription="back to properties"
+                    android:background="@null"
+                    android:elevation="0dp" />
+            </FrameLayout>
+
+        </RelativeLayout>
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/ll"
+        tools:ignore="NotSibling">
+        <LinearLayout
+            android:id="@+id/ll_properties"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+            <TextView
+                android:id="@+id/tv_properties"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Properties"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_centerVertical="true" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/archived_properties"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp" />
+            <TextView
+                android:id="@+id/tv_tenants"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tenants"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_centerVertical="true" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/archived_tenants"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp" />
+            <TextView
+                android:id="@+id/tv_payments"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Payments"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_centerVertical="true" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/archived_payments"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp" />
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -69,10 +69,6 @@ public class EditPropertyActivity extends AppCompatActivity {
             } else if ("par nuitée".equals(rentalType)) {
                 rbn.setChecked(true);
             }
-            if (imageUriStr != null) {
-                imageUri = Uri.parse(imageUriStr);
-                imageView.setImageURI(imageUri);
-            }
 
         rgRentalType.setOnCheckedChangeListener((group, checkedId) -> {
             if (checkedId == R.id.rbm) {
@@ -83,12 +79,7 @@ public class EditPropertyActivity extends AppCompatActivity {
         });
 
         btn_back.setOnClickListener(v -> finish());
-        btn_upload.setOnClickListener(v -> {
-            Intent intentUpload = new Intent(Intent.ACTION_GET_CONTENT);
-            intentUpload.setType("image/*");
-            intentUpload.addCategory(Intent.CATEGORY_OPENABLE);
-            startActivityForResult(Intent.createChooser(intentUpload, "Select Image"), UPLOAD_REQUEST_CODE);
-        });
+
 
         btn_update.setOnClickListener(view -> {
             String namerec = edt_name.getText().toString().trim();
@@ -109,14 +100,6 @@ public class EditPropertyActivity extends AppCompatActivity {
             values.put(CrmDB.COL_PROPERTY_RENT, rentrecp);
             values.put(CrmDB.COL_PROPERTY_TYPE, typerec);
             values.put(CrmDB.COL_PROPERTY_RENTAL_TYPE, rentalType);
-            if (imageUri != null) {
-                values.put(CrmDB.COL_PROPERTY_IMAGE, imageUri.toString());
-                Toast.makeText(getApplicationContext(), "url:"+ imageUri.toString(), Toast.LENGTH_SHORT).show();
-
-            }else{
-                Toast.makeText(getApplicationContext(), "urlsss:", Toast.LENGTH_SHORT).show();
-
-            }
 
             CrmDB crmDB = new CrmDB(EditPropertyActivity.this);
             int rowsUpdated = crmDB.modifierElement(CrmDB.TABLE_PROPERTIES, values, CrmDB.COL_PROPERTY_ID + "=?", new String[]{String.valueOf(propertyId)});
@@ -130,17 +113,6 @@ public class EditPropertyActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == UPLOAD_REQUEST_CODE && resultCode == RESULT_OK) {
-            if (data != null && data.getData() != null) {
-                imageUri = data.getData();
-                Log.d("Upload", "Selected Image URI: " + imageUri.toString());
-                imageView.setImageURI(imageUri);
-            }
-        }
-    }
     private void setSpinnerSelection(Spinner spinner, String value) {
         for (int i = 0; i < spinner.getCount(); i++) {
             if (spinner.getItemAtPosition(i).toString().equals(value)) {

@@ -69,6 +69,14 @@
                 android:inputType="text"
                 android:imeOptions="actionSearch" />
         </LinearLayout>
+        <Button
+            android:id="@+id/btn_archives"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="Archives"
+            android:backgroundTint="#6200EE"
+            android:textColor="@color/white"
+            />
     </LinearLayout>
     <ScrollView
     android:layout_width="match_parent"

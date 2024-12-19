@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -24,6 +25,7 @@ public class PropertiesActivity extends Fragment {
     private List<Property> propertyList;
     private EditText edtSearch;
     private ImageButton btn_search, btn_addp;
+    private Button btn_archives;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -33,14 +35,17 @@ public class PropertiesActivity extends Fragment {
         edtSearch = view.findViewById(R.id.edt_search);
         btn_search = view.findViewById(R.id.btn_search);
         btn_addp = view.findViewById(R.id.btn_addp);
+        btn_archives = view.findViewById(R.id.btn_archives);
+
 
         propertyList = new ArrayList<>();
-        propertyAdapter = new PropertyAdapter(propertyList, this::onEditProperty, this::onArchiveProperty, this::onMoreOptions);
+        propertyAdapter = new PropertyAdapter(propertyList, this::onEditProperty, this::onArchiveProperty, this::onMoreOptions,this::onDeleteProperty);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(propertyAdapter);
         loadProperties();
         btn_search.setOnClickListener(v -> performSearch());
         btn_addp.setOnClickListener(v -> addProperty());
+        btn_archives.setOnClickListener(v->ArchivesProperties());
 
         return view;
     }
@@ -105,6 +110,11 @@ public class PropertiesActivity extends Fragment {
         startActivity(intent);
     }
 
+    private void ArchivesProperties() {
+        Intent it = new Intent(getActivity(), ArchivedActivity.class);
+        startActivity(it);
+    }
+
     private void onEditProperty(int position) {
         Property property = propertyList.get(position);
         Intent intent = new Intent(getActivity(), EditPropertyActivity.class);
@@ -121,14 +131,15 @@ public class PropertiesActivity extends Fragment {
         CrmDB crmDB = new CrmDB(requireContext());
         Property property = propertyList.get(position);
         int propertyId = property.getId();
-        String table = "properties";
-        String whereClause = "id = ?";
-        String[] whereArgs = new String[]{String.valueOf(propertyId)};
+
         ContentValues contentValues = new ContentValues();
         contentValues.put("status", "archived");
-        SQLiteDatabase db = crmDB.OuvrirBD();
-        int rowsUpdated = db.update(table, contentValues, whereClause, whereArgs);
-        crmDB.FermerBD();
+
+        String whereClause = "id = ?";
+        String[] whereArgs = new String[]{String.valueOf(propertyId)};
+
+        int rowsUpdated = crmDB.mettreAJourElement(CrmDB.TABLE_PROPERTIES, contentValues, whereClause, whereArgs);
+
         if (rowsUpdated > 0) {
             propertyList.remove(position);
             propertyAdapter.notifyItemRemoved(position);
@@ -137,7 +148,26 @@ public class PropertiesActivity extends Fragment {
             Toast.makeText(getActivity(), "Échec de l'archivage de la propriété", Toast.LENGTH_SHORT).show();
         }
     }
+    private void onDeleteProperty(int position) {
+        Property propertyToDelete = propertyList.get(position);
+        int propertyId = propertyToDelete.getId();
+        CrmDB crmDB = new CrmDB(requireContext());
+        int rowsDeleted = crmDB.supprimerElement(
+                CrmDB.TABLE_PROPERTIES,
+                "id = ?",
+                new String[]{String.valueOf(propertyId)}
+        );
+        if (rowsDeleted > 0) {
+            Toast.makeText(getActivity(), "Propriété supprimée avec succès", Toast.LENGTH_SHORT).show();
 
+            propertyList.remove(position);
+            RecyclerView.Adapter<RecyclerView.ViewHolder> adapter = null;
+            adapter.notifyItemRemoved(position);
+
+        } else {
+            Toast.makeText(getActivity(), "Échec de la suppression de la propriété", Toast.LENGTH_SHORT).show();
+        }
+    }
     private void onMoreOptions(int position) {
         Property property = propertyList.get(position);
         Intent it = new Intent(getActivity(), PropertyDetailsActivity.class);

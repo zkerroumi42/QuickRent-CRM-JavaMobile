@@ -15,6 +15,9 @@
         android:theme="@style/Theme.RentalApp"
         tools:targetApi="31">
         <activity
+            android:name=".ArchivedActivity"
+            android:exported="false" />
+        <activity
             android:name=".AboutActivity"
             android:exported="false" />
         <activity
