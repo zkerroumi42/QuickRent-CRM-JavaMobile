@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center_vertical"
-                android:text="*Veuillez saisir les champs email and password !"
+                android:text=""
                 android:textSize="15sp"
                 android:textStyle="bold"
                 android:textColor="#F00"

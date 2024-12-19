@@ -1,68 +1,56 @@
 package com.example.rentalapp;
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
+import android.content.Context;
+import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
+import android.print.PrintAttributes;
+import android.print.PrintManager;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
-import android.widget.Toast;
-
-import androidx.activity.EdgeToEdge;
+import com.example.rentalapp.Controllers.PrintPdfAdapter;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+public class DashboardActivity extends Fragment {
 
+    private ImageButton btnReport;
 
-public class DashboardActivity extends AppCompatActivity {
-    ImageButton btn_profile;
-    ImageButton btn_search;
-    ImageButton btn_report;
-
-
-    @SuppressLint("WrongViewCast")
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_dashboard);
-        // Adjust padding for system bars
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
-        btn_profile = findViewById(R.id.btn_profile);
-        btn_search = findViewById(R.id.btn_search);
-        btn_report = findViewById(R.id.btn_report);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.activity_dashboard, container, false);
 
-        btn_profile.setOnClickListener(new View.OnClickListener() {
+        // Initialize the button
+        btnReport = view.findViewById(R.id.btn_report);
+        // Set the click listener for btnReport
+        btnReport.setOnClickListener(v -> generateAndPrintPdf());
 
-            public void onClick(View view) {
-                Intent it = new Intent(DashboardActivity.this,
-                        com.example.rentalapp.SettingsActivity.class);
-                startActivity(it);
-            }
-        });
+        return view;
+    }
+    private void generateAndPrintPdf() {
+        // Define your content for the PDF
+        String reportContent = "Dashboard Report\n\n"
+                + "Summary of Activities:\n"
+                + "- Total Rentals: 120\n"
+                + "- Pending Approvals: 15\n"
+                + "- Archived Properties: 10";
 
-        btn_search.setOnClickListener(new View.OnClickListener() {
+        // Create a simple PDF document
+        PdfDocument pdfDocument = new PdfDocument();
 
-            public void onClick(View view) {
-            }
-        });
-        btn_report.setOnClickListener(new View.OnClickListener() {
+        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(300, 600, 1).create();
+        PdfDocument.Page page = pdfDocument.startPage(pageInfo);
 
-            public void onClick(View view) {
+        // Write content into the PDF
+        page.getCanvas().drawText(reportContent, 10, 25, new android.graphics.Paint());
+        pdfDocument.finishPage(page);
 
-                
-            }
-        });
-
-
+        // Use a PrintManager to send the document to the print service
+        PrintManager printManager = (PrintManager) requireContext().getSystemService(Context.PRINT_SERVICE);
+        PrintPdfAdapter printAdapter = new PrintPdfAdapter(requireContext(), pdfDocument, "Dashboard_Report.pdf");
+        printManager.print("DashboardReport", printAdapter, new PrintAttributes.Builder().build());
     }
 }

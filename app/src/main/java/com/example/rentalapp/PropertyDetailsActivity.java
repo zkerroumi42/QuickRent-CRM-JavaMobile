@@ -1,41 +1,35 @@
 package com.example.rentalapp;
-
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 public class PropertyDetailsActivity extends AppCompatActivity {
-
-    private ImageView imgProperty;
-    private TextView tvPropertyName, tvPropertyDescription;
-    private Button btnContactOwner;
-
+    private TextView tv_name, tv_Description, tv_Rent, tv_Type, tv_RentalType;
+    private ImageView imgPropertyImage;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_property_details);
+        tv_name = findViewById(R.id.tv_name);
+        tv_Description = findViewById(R.id.tv_description);
+        tv_Rent = findViewById(R.id.tv_rent);
+        tv_Type = findViewById(R.id.tv_type);
+        tv_RentalType = findViewById(R.id.tv_rental_type);
+        imgPropertyImage = findViewById(R.id.img_property_image);
+        String name = getIntent().getStringExtra("PROPERTY_NAME");
+        String description = getIntent().getStringExtra("PROPERTY_DESCRIPTION");
+        double rent = getIntent().getDoubleExtra("PROPERTY_RENT", 0.0);
+        String type = getIntent().getStringExtra("PROPERTY_TYPE");
+        String rentalType = getIntent().getStringExtra("PROPERTY_RENTAL_TYPE");
+        String imageUri = getIntent().getStringExtra("PROPERTY_IMAGE");
+        tv_name.setText(name);
+        tv_Description.setText(description);
+        tv_Rent.setText(String.format("$%.2f", rent));
+        tv_Type.setText(type);
+        tv_RentalType.setText(rentalType);
 
-        // Initialize views
-        imgProperty = findViewById(R.id.img_property);
-        tvPropertyName = findViewById(R.id.tv_property_name);
-        tvPropertyDescription = findViewById(R.id.tv_property_description);
-        btnContactOwner = findViewById(R.id.btn_contact_owner);
-
-        // Get data from Intent
-        String propertyName = getIntent().getStringExtra("PROPERTY_NAME");
-        String propertyDescription = getIntent().getStringExtra("PROPERTY_DESCRIPTION");
-
-        // Set data to views
-        tvPropertyName.setText(propertyName);
-        tvPropertyDescription.setText(propertyDescription);
-
-        // Add listener for Contact Owner button
-        btnContactOwner.setOnClickListener(v ->
-                Toast.makeText(this, "Contacting owner of " + propertyName, Toast.LENGTH_SHORT).show()
-        );
     }
 }

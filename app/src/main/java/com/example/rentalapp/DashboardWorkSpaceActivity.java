@@ -1,8 +1,6 @@
 package com.example.rentalapp;
-
 import android.os.Bundle;
 import android.widget.Toast;
-
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,7 +8,6 @@ import androidx.fragment.app.Fragment;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class DashboardWorkSpaceActivity extends AppCompatActivity {
@@ -24,19 +21,24 @@ public class DashboardWorkSpaceActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        String adminName = getIntent().getStringExtra("admin_name");
+        Toast.makeText(
+                getApplicationContext(),
+                "User: " + adminName + " authenticated successfully!",
+                Toast.LENGTH_SHORT
+        ).show();
+        BottomNavigationView bnv = findViewById(R.id.bottom_nav_view);
 
-        String userLogin = getIntent().getStringExtra("userlogin");
-        Toast.makeText(getApplicationContext(), "User: " + userLogin + " authenticated successfully!", Toast.LENGTH_SHORT).show();
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_nav_view);
-            bottomNavigationView.setOnItemSelectedListener(item -> {
+            if (savedInstanceState == null) {
+                    getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new DashboardActivity())
+                        .commit();
+                bnv.setSelectedItemId(R.id.nav_dashboard);
+             }
+
+        bnv.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
             Fragment selectedFragment = null;
-
-                for (int i = 0; i < bottomNavigationView.getMenu().size(); i++) {
-                    bottomNavigationView.findViewById(bottomNavigationView.getMenu().getItem(i).getItemId())
-                            .setBackgroundColor(getResources().getColor(R.color.light_gray));
-                }
-
             if (itemId == R.id.nav_dashboard) {
                 selectedFragment = new DashboardActivity();
             } else if (itemId == R.id.nav_settings) {
@@ -52,7 +54,6 @@ public class DashboardWorkSpaceActivity extends AppCompatActivity {
                         .replace(R.id.fragment_container, selectedFragment)
                         .commit();
             }
-
             return true;
         });
     }

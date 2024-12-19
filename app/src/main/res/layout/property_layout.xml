@@ -5,32 +5,27 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="16dp">
-
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         app:cardCornerRadius="8dp"
         app:cardElevation="4dp">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:padding="16dp">
-
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginEnd="16dp"
                 android:contentDescription="Property Icon"
                 android:src="@drawable/home" />
-
             <LinearLayout
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-
                 <TextView
                     android:id="@+id/property_name"
                     android:layout_width="wrap_content"
@@ -54,24 +49,21 @@
                     android:src="@drawable/morev"
                     app:tint="@color/white" />
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-
                 <ImageButton
                     android:id="@+id/btn_edit"
-                    android:layout_width="30dp"
-                    android:layout_height="48dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:contentDescription="Edit Property"
                     android:src="@drawable/edit" />
-
                 <ImageButton
                     android:id="@+id/btn_archive"
-                    android:layout_width="30dp"
-                    android:layout_height="48dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:contentDescription="Archive Property"
                     android:src="@drawable/back" />

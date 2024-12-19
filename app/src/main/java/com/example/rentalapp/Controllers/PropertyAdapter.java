@@ -1,4 +1,4 @@
-package com.example.rentalapp;
+package com.example.rentalapp.Controllers;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,24 +8,27 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.rentalapp.Entities.Property;
+import com.example.rentalapp.R;
+
 import java.util.List;
 public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.PropertyViewHolder> {
 
     private Context context;
-    public PropertyAdapter(Context context, List<PropertyItem> propertyList) {
+    public PropertyAdapter(Context context, List<Property> propertyList) {
         this.context = context;
         this.propertyList = propertyList;
     }
-    private List<PropertyItem> propertyList;
+    private List<Property> propertyList;
     private OnPropertyActionListener onEditListener;
     private OnPropertyActionListener onArchiveListener;
     private OnPropertyActionListener onMoreListener;
-
     public interface OnPropertyActionListener {
         void onAction(int position);
     }
 
-    public PropertyAdapter(List<PropertyItem> propertyList,
+    public PropertyAdapter(List<Property> propertyList,
                            OnPropertyActionListener onEditListener,
                            OnPropertyActionListener onArchiveListener,
                            OnPropertyActionListener onMoreListener) {
@@ -35,7 +38,7 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.Proper
         this.onMoreListener = onMoreListener;
     }
 
-    public void updateList(List<PropertyItem> newList) {
+    public void updateList(List<Property> newList) {
         propertyList = newList;
         notifyDataSetChanged();
     }
@@ -49,17 +52,13 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.Proper
 
     @Override
     public void onBindViewHolder(@NonNull PropertyViewHolder holder, int position) {
-        PropertyItem property = propertyList.get(position);
+        Property property = propertyList.get(position);
         holder.propertyName.setText(property.getName());
         holder.propertyDescription.setText(property.getDescription());
 
         holder.btnEdit.setOnClickListener(v -> onEditListener.onAction(position));
         holder.btnArchive.setOnClickListener(v -> onArchiveListener.onAction(position));
-        //holder.btnMore.setOnClickListener(v -> onMoreListener.onAction(position));
-        holder.itemView.setOnClickListener(v -> {
-            PropertyDetailsDialogFragment dialogFragment =
-                    PropertyDetailsDialogFragment.newInstance(property.getName(), property.getDescription());
-        });
+        holder.btnMore.setOnClickListener(v -> onMoreListener.onAction(position));
 
 
     }

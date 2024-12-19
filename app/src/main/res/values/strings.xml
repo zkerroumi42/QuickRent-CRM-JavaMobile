@@ -10,8 +10,8 @@
         <item>Land</item>
     </string-array>
     <string-array name="lang">
-        <item>Arabic</item>
+        <item>English</item>
         <item>French</item>
-        <item>English</item>>
+        <item>Arabic</item>>
     </string-array>
 </resources>

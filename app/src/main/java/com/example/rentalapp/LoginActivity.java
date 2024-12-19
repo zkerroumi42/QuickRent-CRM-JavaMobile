@@ -1,6 +1,10 @@
 package com.example.rentalapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -27,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     TextView tv_signup;
     TextView tv_vide;
 
+    private SharedPreferences SP;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,21 +43,33 @@ public class LoginActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        edt_email = findViewById(R.id.edt_email);
-        edt_pwd = findViewById(R.id.edt_pwd);
-        tv_forgot_pwd = findViewById(R.id.tv_forgot_pwd);
-        sw_remember = findViewById(R.id.sw_remember);
-        btn_login = findViewById(R.id.btn_login);
-        btn_google = findViewById(R.id.btn_google);
-        btn_facebook = findViewById(R.id.btn_facebook);
-        tv_no_account = findViewById(R.id.tv_no_account);
-        tv_signup = findViewById(R.id.tv_signup);
+        SP = getSharedPreferences("RentalAppPreferences", MODE_PRIVATE);
+        boolean isLoggedIn = SP.getBoolean("is_logged_in", false);
 
-        tv_vide = findViewById(R.id.tv_vide);
-        tv_vide.setVisibility(View.GONE);
-        btn_login.setOnClickListener(new View.OnClickListener() {
+        if (isLoggedIn) {
+            String admin_name = SP.getString("admin_name", "");
+            String admin_email = SP.getString("admin_email", "");
 
-            public void onClick(View view) {
+            Intent intent = new Intent(LoginActivity.this, DashboardWorkSpaceActivity.class);
+            intent.putExtra("admin_name", admin_name);
+            intent.putExtra("admin_email", admin_email);
+
+            startActivity(intent);
+            finish();
+        } else {
+            edt_email = findViewById(R.id.edt_email);
+            edt_pwd = findViewById(R.id.edt_pwd);
+            tv_forgot_pwd = findViewById(R.id.tv_forgot_pwd);
+            sw_remember = findViewById(R.id.sw_remember);
+            btn_login = findViewById(R.id.btn_login);
+            btn_google = findViewById(R.id.btn_google);
+            btn_facebook = findViewById(R.id.btn_facebook);
+            tv_no_account = findViewById(R.id.tv_no_account);
+            tv_signup = findViewById(R.id.tv_signup);
+            tv_vide = findViewById(R.id.tv_vide);
+            tv_vide.setVisibility(View.GONE);
+
+            btn_login.setOnClickListener(view -> {
                 String email = edt_email.getText().toString().trim();
                 String pwd = edt_pwd.getText().toString().trim();
 
@@ -68,31 +85,48 @@ public class LoginActivity extends AppCompatActivity {
                 } else if (pwd.isEmpty()) {
                     tv_vide.setText("Veuillez remplir mot de passe.");
                     tv_vide.setVisibility(View.VISIBLE);
+                } else {
+                    CrmDB crmDB = new CrmDB(LoginActivity.this);
+                    Cursor cursor = crmDB.getElements(CrmDB.TABLE_ADMIN,
+                            null,
+                            CrmDB.COL_ADMIN_EMAIL + "=? AND " + CrmDB.COL_ADMIN_PASSWORD + "=?",
+                            new String[]{email, pwd},
+                            null);
+
+                    if (cursor != null && cursor.moveToFirst()) {
+                        if (sw_remember.isChecked()) {
+                            SharedPreferences.Editor editor = SP.edit();
+                            editor.putString("admin_name", cursor.getString(cursor.getColumnIndexOrThrow(CrmDB.COL_ADMIN_NAME)));
+                            editor.putString("admin_email", email);
+                            editor.putBoolean("is_logged_in", true);
+                            editor.apply();
+                        }
+                        Intent it = new Intent(LoginActivity.this, DashboardWorkSpaceActivity.class);
+                        it.putExtra("admin_name", cursor.getString(cursor.getColumnIndexOrThrow(CrmDB.COL_ADMIN_NAME)));
+                        startActivity(it);
+                        finish();
+                    } else {
+                        tv_vide.setText("Email ou mot de passe incorrect.");
+                        tv_vide.setVisibility(View.VISIBLE);
+                    }
+                    if (cursor != null) {
+                        cursor.close();
+                    }
                 }
-                else {
-                    Intent it = new Intent(LoginActivity.this,
-                            com.example.rentalapp.DashboardWorkSpaceActivity.class) ;
-                    it.putExtra("userlogin",email);
-                    it.putExtra("modepass",pwd);
-                    startActivity(it);
-                }
-            }
+            });
 
-        });
-        btn_google.setOnClickListener(new View.OnClickListener() {
+            btn_google.setOnClickListener(view -> {
+                //
+            });
 
-            public void onClick(View view) {
-            //perspectives
-            }
+            btn_facebook.setOnClickListener(view -> {
+                //
+            });
 
-        });
-        btn_facebook.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View view) {
-                //perspectives
-            }
-
-        });
-
+            tv_signup.setOnClickListener(view -> {
+                Intent signupIntent = new Intent(LoginActivity.this, SignupActivity.class);
+                startActivity(signupIntent);
+            });
+        }
     }
 }

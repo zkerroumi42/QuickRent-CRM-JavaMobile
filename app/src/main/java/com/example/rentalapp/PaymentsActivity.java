@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 public class PaymentsActivity extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.activity_payments, container, false);
+        View view = inflater.inflate(R.layout.activity_payments, container, false);
+        return view;
     }
 }

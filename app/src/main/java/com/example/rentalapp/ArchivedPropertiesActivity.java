@@ -27,7 +27,7 @@ public class ArchivedPropertiesActivity extends AppCompatActivity {
         btn_back.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 Intent it = new Intent(ArchivedPropertiesActivity.this,
-                        com.example.rentalapp.PropertiesFragment.class);
+                        com.example.rentalapp.PropertiesActivity.class);
                 startActivity(it);
             }
         });
