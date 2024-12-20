@@ -116,7 +116,7 @@
                     android:textColor="@color/black"
                     android:textSize="16sp" />
                 <Switch
-                    android:id="@+id/switch_dark_mode"
+                    android:id="@+id/switch_mode"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </LinearLayout>
@@ -168,12 +168,15 @@
                     android:contentDescription="About Icon"
                     app:tint="@color/classic" />
                 <TextView
+                    android:id="@+id/tv_about"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_weight="1"
                     android:text="About"
                     android:textColor="@color/black"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:textSize="16sp" />
                 <ImageView
                     android:layout_width="24dp"
@@ -182,6 +185,16 @@
                     android:contentDescription="Navigate"
                     app:tint="@color/gray" />
             </LinearLayout>
+            <Button
+                android:id="@+id/btn_share"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Partager"
+                android:backgroundTint="#6200EE"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:padding="12dp" />
             <Button
                 android:id="@+id/btn_signout"
                 android:layout_width="match_parent"

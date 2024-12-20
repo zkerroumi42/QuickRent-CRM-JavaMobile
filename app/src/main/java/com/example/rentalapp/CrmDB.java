@@ -21,6 +21,7 @@ public class CrmDB {
     public static final String COL_TENANT_PHONE = "_phone";
     public static final String COL_TENANT_EMAIL = "_email";
 
+
     public static final String TABLE_PROPERTIES = "_properties";
     public static final String COL_PROPERTY_ID = "_id";
     public static final String COL_PROPERTY_NAME = "_name";
@@ -139,4 +140,16 @@ public class CrmDB {
         SQLiteDatabase db = OuvrirBD();
         return db.query(table, columns, selection, selectionArgs, null, null, orderBy);
     }
+    public int getCount(String table) {
+        SQLiteDatabase db = OuvrirBD();
+        Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM " + table, null);
+        int count = 0;
+        if (cursor != null && cursor.moveToFirst()) {
+            count = cursor.getInt(0);
+            cursor.close();
+        }
+        FermerBD();
+        return count;
+    }
+
 }

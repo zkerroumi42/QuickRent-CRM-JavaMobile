@@ -49,7 +49,7 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.Proper
     @NonNull
     @Override
     public PropertyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.property_layout, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.property_card, parent, false);
         return new PropertyViewHolder(view);
     }
 
@@ -72,7 +72,6 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.Proper
     static class PropertyViewHolder extends RecyclerView.ViewHolder {
         TextView propertyName, propertyDescription;
         ImageButton btnEdit, btnArchive, btnMore,btnDelete;
-
         public PropertyViewHolder(@NonNull View view) {
             super(view);
             propertyName = view.findViewById(R.id.property_name);

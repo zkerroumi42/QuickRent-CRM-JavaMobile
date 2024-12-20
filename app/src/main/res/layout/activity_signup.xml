@@ -84,7 +84,7 @@
             android:inputType="textPassword"
             android:background="@android:drawable/edit_text"
             android:padding="12dp"
-            android:layout_marginBottom="20dp" />
+            android:layout_marginBottom="7dp" />
         <TextView
             android:id="@+id/tv_vide"
             android:layout_width="wrap_content"
@@ -104,8 +104,8 @@
             android:text="S'inscrire"
             android:backgroundTint="#6200EE"
             android:textColor="#FFFFFF"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp"
             android:padding="12dp" />
 
         <TextView

@@ -10,7 +10,7 @@ public class LocaleHelper {
 
     public static void applyLocale(Context context) {
         SharedPreferences SP = context.getSharedPreferences("RentalAppPreferences", Context.MODE_PRIVATE);
-        String langCode = SP.getString("app_lang", "en"); // Default to English
+        String langCode = SP.getString("app_lang", "en"); // Default English
 
         Locale locale = new Locale(langCode);
         Locale.setDefault(locale);

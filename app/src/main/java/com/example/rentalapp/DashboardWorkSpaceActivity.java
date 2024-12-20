@@ -29,12 +29,12 @@ public class DashboardWorkSpaceActivity extends AppCompatActivity {
         ).show();
         BottomNavigationView bnv = findViewById(R.id.bottom_nav_view);
 
-            if (savedInstanceState == null) {
-                    getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, new DashboardActivity())
-                        .commit();
-                bnv.setSelectedItemId(R.id.nav_dashboard);
-             }
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, new DashboardActivity())
+                    .commit();
+            bnv.setSelectedItemId(R.id.nav_dashboard);
+        }
 
         bnv.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();

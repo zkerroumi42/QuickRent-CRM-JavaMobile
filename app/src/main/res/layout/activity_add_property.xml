@@ -30,11 +30,11 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="350dp"
+            android:layout_marginStart="300dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="Back"
             android:src="@drawable/lefts"
-            app:tint="@color/white" />
+            app:tint="@color/black" />
     </RelativeLayout>
     <ScrollView
         android:layout_width="match_parent"
@@ -68,7 +68,7 @@
                 android:text="Property Description"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="2dp"
                 android:layout_marginBottom="2dp" />
             <EditText
                 android:id="@+id/edt_description"
@@ -87,7 +87,7 @@
                 android:text="Type of Property"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="2dp"
                 android:layout_marginBottom="2dp" />
             <Spinner
                 android:id="@+id/spinner_type"
@@ -103,7 +103,7 @@
                 android:text="Rental Type"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="2dp"
                 android:layout_marginBottom="2dp" />
             <RadioGroup
                 android:id="@+id/rg_rental_type"
@@ -181,8 +181,8 @@
                 android:text="Property Image"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="8dp" />
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp" />
             <Button
                 android:id="@+id/btn_upload"
                 android:layout_width="match_parent"

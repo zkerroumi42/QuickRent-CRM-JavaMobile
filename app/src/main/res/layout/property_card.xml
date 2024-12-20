@@ -8,14 +8,14 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="2dp"
         app:cardCornerRadius="8dp"
         app:cardElevation="4dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="16dp">
+            android:padding="7dp">
             <ImageView
                 android:layout_width="60dp"
                 android:layout_height="60dp"
@@ -71,12 +71,10 @@
                         android:layout_width="48dp"
                         android:layout_height="48dp"
                         android:background="?attr/selectableItemBackgroundBorderless"
-                        android:contentDescription="Delete Property"
+                        android:contentDescription="Archive Property"
                         android:src="@drawable/archive" />
                 </LinearLayout>
-
             </LinearLayout>
-
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>

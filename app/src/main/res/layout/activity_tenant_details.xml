@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TenantDetailsActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/home"
+            android:contentDescription="image pro"
+            app:layout_constraintEnd_toEndOf="parent" />
+        <TextView
+            android:id="@+id/tv_tenant_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nom du locataire"
+            android:textSize="18sp"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/tv_tenant_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Téléphone"
+            android:textSize="16sp"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/tv_tenant_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="E-mail"
+            android:textSize="16sp"
+            android:padding="8dp" />
+
+        <TextView
+            android:id="@+id/tv_tenant_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Statut"
+            android:textSize="16sp"
+            android:padding="8dp" />
+
+        <Button
+            android:id="@+id/btn_edit_tenant"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Modifier" />
+
+        <Button
+            android:id="@+id/btn_archive_tenant"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Archiver" />
+
+        <Button
+            android:id="@+id/btn_delete_tenant"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Supprimer" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
